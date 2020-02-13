@@ -47,13 +47,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)
-
+        var title = ""
+        var desc = ""
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            intentData?.getStringExtra(NewNoteActivity.EXTRA_REPLY)?.let {
-                val word = Notes(it,it)
-                wordViewModel.insert(word)
-                Unit
+            intentData?.getStringExtra(NewNoteActivity.TITLE)?.let {
+                title = it
             }
+            intentData?.getStringExtra(NewNoteActivity.DESC)?.let {
+                desc = it
+            }
+            val note = Notes(title, desc)
+            wordViewModel.insert(note)
+            Unit
         } else {
             Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
         }

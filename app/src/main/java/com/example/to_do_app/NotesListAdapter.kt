@@ -16,7 +16,8 @@ class NotesListAdapter internal constructor(
     private var words = emptyList<Notes>() // Cached copy of words
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val wordItemView: TextView = itemView.findViewById(R.id.textView)
+        val wordItemTitleView: TextView = itemView.findViewById(R.id.textViewTitle)
+        val wordItemDescView: TextView = itemView.findViewById(R.id.textViewDesc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -26,7 +27,8 @@ class NotesListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = words[position]
-        holder.wordItemView.text = current.title
+        holder.wordItemTitleView.text = current.title
+        holder.wordItemDescView.text = current.desc
     }
 
     internal fun setWords(words: List<Notes>) {

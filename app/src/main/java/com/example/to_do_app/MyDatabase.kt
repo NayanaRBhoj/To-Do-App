@@ -33,7 +33,7 @@ abstract class MyDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                         context.applicationContext,
                         MyDatabase::class.java,
-                        "word_database"
+                        "note_database"
                 )
                         .addCallback(WordDatabaseCallback(scope))
                         .build()

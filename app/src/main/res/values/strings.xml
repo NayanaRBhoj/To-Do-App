@@ -2,6 +2,7 @@
     <string name="app_name">To-Do-App</string>
     <string name="hint_word">Word…</string>
     <string name="button_save">Save</string>
-    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="empty_not_saved">Note not saved because either title or description is empty.</string>
     <string name="title_et_placeholder">Tittle</string>
+    <string name="desc_et_placeholder">Description</string>
 </resources>

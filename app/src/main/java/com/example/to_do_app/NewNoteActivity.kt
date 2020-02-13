@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.to_do_app
 
 import android.app.Activity
@@ -30,14 +14,16 @@ import androidx.appcompat.app.AppCompatActivity
 
 class NewNoteActivity : AppCompatActivity() {
 
-    private lateinit var editWordView: EditText
+    private lateinit var editTitle: EditText
+    private lateinit var editDesc: EditText
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.new_word_layout)
-        editWordView = findViewById(R.id.word_edittext)
+        editTitle = findViewById(R.id.editTitle)
+        editDesc = findViewById(R.id.editDesc)
 
-        val saveNoteBtn = findViewById<Button>(R.id.button_save_word)
+        val saveNoteBtn = findViewById<Button>(R.id.save_btn)
         saveNoteBtn.setOnClickListener {
             checkAndSave()
         }
@@ -46,13 +32,15 @@ class NewNoteActivity : AppCompatActivity() {
 
     fun checkAndSave(){
         val replyIntent = Intent()
-        val word = editWordView.text.toString()
+        val title = editTitle.text.toString()
+        val desc = editDesc.text.toString()
 
-        if (TextUtils.isEmpty(word)) {
+        if (TextUtils.isEmpty(title)) {
             setResult(Activity.RESULT_CANCELED, replyIntent)
         } else {
 
-            replyIntent.putExtra(EXTRA_REPLY, word)
+            replyIntent.putExtra(TITLE, title)
+            replyIntent.putExtra(DESC, desc)
             setResult(Activity.RESULT_OK, replyIntent)
         }
         finish()
@@ -62,7 +50,8 @@ class NewNoteActivity : AppCompatActivity() {
 
 
     companion object {
-        const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
+        const val TITLE = "TITLE"
+        const val DESC = "DESC"
     }
 }
 
